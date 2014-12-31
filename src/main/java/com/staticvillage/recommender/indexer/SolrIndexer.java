@@ -1,6 +1,7 @@
 package com.staticvillage.recommender.indexer;
 
 import com.staticvillage.recommender.bean.Place;
+import com.staticvillage.recommender.exception.IndexerException;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
@@ -23,23 +24,39 @@ public class SolrIndexer implements Indexer<Place> {
     }
 
     @Override
-    public void addBean(Place place) throws IOException, SolrServerException {
-        solr.addBean(place);
+    public void addBean(Place place) throws IndexerException {
+        try {
+            solr.addBean(place);
+        } catch (IOException e) {
+            throw new IndexerException(e.getMessage());
+        } catch (SolrServerException e) {
+            throw new IndexerException(e.getMessage());
+        }
     }
 
     @Override
-    public void addBeans(List<Place> places) throws IOException, SolrServerException {
-        solr.addBeans(places);
+    public void addBeans(List<Place> places) throws IndexerException {
+        try {
+            solr.addBeans(places);
+        } catch (IOException e) {
+            throw new IndexerException(e.getMessage());
+        } catch (SolrServerException e) {
+
+        }
     }
 
     @Override
-    public List<Place> getBeans() throws SolrServerException {
+    public List<Place> getBeans() throws IndexerException {
         SolrQuery query = new SolrQuery();
         query.setQuery("*:*");
         //query.
 
-        QueryResponse rsp = solr.query(query);
-        return rsp.getBeans(Place.class);
+        try {
+            QueryResponse rsp = solr.query(query);
+            return rsp.getBeans(Place.class);
+        } catch (SolrServerException e) {
+            throw new IndexerException(e.getMessage());
+        }
     }
 
     @Override
