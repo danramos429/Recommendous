@@ -12,14 +12,17 @@ public class Place {
     public String id;
 
     @Field
+    public String name;
+
+    @Field
     public List<String> features;
 
     @Field
-    public List<String> values;
+    public List<Float> values;
 
     @Field("lat")
-    public String latitude;
+    public double latitude;
 
     @Field("lng")
-    public String longitude;
+    public double longitude;
 }

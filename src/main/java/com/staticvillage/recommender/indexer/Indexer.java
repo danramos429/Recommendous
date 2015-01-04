@@ -13,5 +13,5 @@ public interface Indexer<E> {
     public void addBean(E bean) throws IndexerException;
     public void addBeans(List<E> beans) throws IndexerException;
     public List<E> getBeans() throws IndexerException;
-    public List<E> getBeans(Object obj);
+    public List<E> getBeans(Object obj) throws IndexerException;
 }
