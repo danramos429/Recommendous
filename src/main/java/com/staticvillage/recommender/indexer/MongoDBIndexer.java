@@ -54,6 +54,11 @@ public class MongoDBIndexer implements Indexer<Place> {
 
         builder.execute();
     }
+	
+	@Override
+	public boolean updateBean(Place bean){
+		
+	}
 
     @Override
     public List<Place> getBeans() throws IndexerException {
