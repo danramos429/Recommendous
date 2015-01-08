@@ -12,6 +12,6 @@ specific language governing permissions and limitations under the License.
  */
 package com.staticvillage.recommender.strategy;
 
-public class LeastMiseryStrategy implements Strategy {
+public class MostRespectedPersonStrategy implements Strategy {
 
 }
